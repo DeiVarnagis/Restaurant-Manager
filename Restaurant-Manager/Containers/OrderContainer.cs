@@ -20,6 +20,14 @@ namespace Restaurant_Manager.Containers
             orderArray = new Order[size];
         }
 
+        public void displayData()
+        {
+            for (int i = 0; i < index; i++)
+            {
+                Console.WriteLine(orderArray[i].ToString());
+            }
+        }
+
         public void addOrderElement(Order element)
         {
             orderArray[index++] = element;

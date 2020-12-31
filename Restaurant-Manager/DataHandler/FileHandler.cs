@@ -32,8 +32,19 @@ namespace Restaurant_Manager.DataHandler
 
         public void appendStockData(Stock stock)
         {
-            File.AppendAllText(STOCKS, stock.ToStringFile());
+            File.AppendAllText(STOCKS, stock.ToStringFile()+ Environment.NewLine);
         }
+
+        public void appendMenuData(Menu menu)
+        {
+            
+            File.AppendAllText(MENU, menu.ToStringFile() + Environment.NewLine);
+        }
+
+        /* public void appendOrderData(Order order)
+         {
+             File.AppendAllText(MENU, stock.ToStringFile()+ Environment.NewLine);
+         }*/
 
         public void rewriteData(StockContainer stockContainer)
         {
@@ -43,6 +54,18 @@ namespace Restaurant_Manager.DataHandler
                 {
                     file.WriteLine(stockContainer.getArrayElement(i).ToStringFile());
                     
+                }
+            }
+        }
+
+        public void rewriteDataMenu(MenuContainer menuContainer)
+        {
+            using (StreamWriter file = new StreamWriter(MENU))
+            {
+                for (int i = 0; i < menuContainer.getLenght(); i++)
+                {
+                    file.WriteLine(menuContainer.getArrayElement(i).ToStringFile());
+
                 }
             }
         }
@@ -63,7 +86,7 @@ namespace Restaurant_Manager.DataHandler
                         productsArray[i] = int.Parse(arrayElements[i]);
                     }
                     Menu menu = new Menu(int.Parse(values[0]), values[1] ,productsArray);
-                    container.addMenuElement(menu);
+                    container.loadStockElement(menu);
                 }
             }
         }
