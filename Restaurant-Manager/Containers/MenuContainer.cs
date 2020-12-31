@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Restaurant_Manager.Models;
 using Restaurant_Manager.DataHandler;
 
@@ -12,14 +8,12 @@ namespace Restaurant_Manager.Containers
     {
 
         private Menu[] menuArray;
-        private int size;
         private int index = 0;
         private int lastInserted;
         FileHandler fileHandler;
 
         public MenuContainer(int size)
         {
-            this.size = size;
             menuArray = new Menu[size];
             fileHandler = new FileHandler();
         }
@@ -65,6 +59,18 @@ namespace Restaurant_Manager.Containers
             return false;
         }
 
+        public bool checkIfElementExist(int id)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                if (menuArray[i].id == id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void updateMenu(Menu element)
         {
             for (int i = 0; i < index; i++)
@@ -92,11 +98,6 @@ namespace Restaurant_Manager.Containers
                 }
             }
             return null;
-        }
-
-        public Menu[] getArray()
-        {
-            return menuArray;
         }
 
         public int getLenght()

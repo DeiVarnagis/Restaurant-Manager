@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Restaurant_Manager.Models;
+using Restaurant_Manager.DataHandler;
 
 namespace Restaurant_Manager.Containers
 {
@@ -11,13 +8,14 @@ namespace Restaurant_Manager.Containers
     {
 
         private Order[] orderArray;
-        private int size;
         private int index = 0;
+        private int lastInserted;
+        FileHandler fileHandler;
 
         public OrderContainer(int size)
         {
-            this.size = size;
             orderArray = new Order[size];
+            fileHandler = new FileHandler();
         }
 
         public void displayData()
@@ -28,36 +26,18 @@ namespace Restaurant_Manager.Containers
             }
         }
 
-        public void addOrderElement(Order element)
+        public void loadOrderElement(Order element)
         {
             orderArray[index++] = element;
+            lastInserted = element.id;
         }
 
-        /* public void deleteStockElement(int id)
-         {
-             for (int i = 0; i < index; i++)
-             {
-                 if(stocksArray[i].id == id)
-                 {
-
-                 }
-             }
-         }*/
-
-        public Order getArrayElement(int id)
+        public void addOrderElement(Order element)
         {
-            return orderArray[id];
+            element.id = lastInserted + 1;
+            lastInserted++;
+            orderArray[index++] = element;
+            fileHandler.appendOrderData(element);
         }
-
-        public int getLenght()
-        {
-            return index;
-        }
-
-        public Order[] getArray()
-        {
-            return orderArray;
-        }
-
     }
 }

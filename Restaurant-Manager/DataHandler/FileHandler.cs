@@ -41,10 +41,10 @@ namespace Restaurant_Manager.DataHandler
             File.AppendAllText(MENU, menu.ToStringFile() + Environment.NewLine);
         }
 
-        /* public void appendOrderData(Order order)
+         public void appendOrderData(Order order)
          {
-             File.AppendAllText(MENU, stock.ToStringFile()+ Environment.NewLine);
-         }*/
+             File.AppendAllText(ORDERS, order.ToStringFile() + Environment.NewLine);
+         }
 
         public void rewriteData(StockContainer stockContainer)
         {
@@ -106,7 +106,7 @@ namespace Restaurant_Manager.DataHandler
                          productsArray[i] = int.Parse(arrayElements[i]);
                      }
                      Order menu = new Order(int.Parse(values[0]), DateTime.Parse(values[1]) ,productsArray);
-                     container.addOrderElement(menu);
+                     container.loadOrderElement(menu);
                  }
              }
          }

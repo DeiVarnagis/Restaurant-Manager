@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Restaurant_Manager.Models;
 using Restaurant_Manager.DataHandler;
 
@@ -109,6 +106,48 @@ namespace Restaurant_Manager.Containers
         {
             return index;
         }
+
+        public List<int> getAllStocksUsed(Order order, MenuContainer menuContainer)
+        {
+            List<int> usedProducts = new List<int>();
+            for (int i = 0; i < order.menuItems.Length; i++)
+            {
+                Menu menuItem = menuContainer.getArrayElementByID(order.menuItems[i]);
+                if (menuItem != null)
+                {
+                    for (int j = 0; j < menuItem.products.Length; j++)
+                    {
+                        usedProducts.Add(menuItem.products[j]);
+                    }              
+                }
+            }
+            return usedProducts;
+        }
+
+
+        public bool deductStocks(Order order, MenuContainer menuContainer)
+        {
+            List<int> stocksUsed = getAllStocksUsed(order, menuContainer);
+            foreach (var stock in stocksUsed)
+            {
+                for (int i = 0; i < index; i++)
+                {
+                    if(stocksArray[i].id == stock)
+                    {
+                        stocksArray[i].portionCount = stocksArray[i].portionCount-1;
+                        if (stocksArray[i].portionCount < 1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            fileHandler.rewriteData(this);
+            return true;
+        }
+
+
+
 
     }
 }

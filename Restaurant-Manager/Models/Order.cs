@@ -8,10 +8,10 @@ namespace Restaurant_Manager.Models
 {
     class Order
     {
-        private int id { get; set; }
+        public int id { get; set; }
 
-        private DateTime date;
-        private int[] menuItems { get; set; }
+        public DateTime date { get; set; }
+        public int[] menuItems { get; set; }
 
         public Order(int id, DateTime date, int[] menuItems)
         {
@@ -20,11 +20,20 @@ namespace Restaurant_Manager.Models
             this.menuItems = menuItems;
         }
 
+        public string arrayAsString()
+        {
+            return string.Join(" ", menuItems.Select(x => x.ToString()).ToArray());
+        }
+
         public override string ToString()
         {
-            string concatenated = string.Join(" ", menuItems.Select(x => x.ToString()).ToArray());
-            return id + " " + date + " " + concatenated;
+            return id + " " + date + " " + arrayAsString();
 
+        }
+
+        public string ToStringFile()
+        {
+            return id + "," + date + "," + arrayAsString();
         }
 
     }

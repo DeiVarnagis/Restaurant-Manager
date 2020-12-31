@@ -36,10 +36,8 @@ namespace Restaurant_Manager
                 Console.WriteLine("\tao - Add new order element");
                 Console.WriteLine("\trs - Remove stock element");
                 Console.WriteLine("\trm - Remove menu element");
-                Console.WriteLine("\tro - Remove order element");
                 Console.WriteLine("\tus - Update stock element");
                 Console.WriteLine("\tum - Update menu element");
-                Console.WriteLine("\tuo - Update order element");
 
                 switch (Console.ReadLine())
                 {
@@ -429,6 +427,63 @@ namespace Restaurant_Manager
                             {
                                 Console.WriteLine("Ups, can't find the id. Try again");
                             }
+                            break;
+                        }
+                    case "ao":
+                        {
+                            int breakPoint = 0;
+                            int[] menuItems;
+                            menuContainer.displayData();
+                            Console.WriteLine();
+                            Console.WriteLine("Write the id of the menu items to put them in order. EXAMPLE 1 2 3");
+                            while (true)
+                            {
+                                breakPoint = 0;
+                                string line = Console.ReadLine();
+                                var values = line.Split(' ');
+                                menuItems = new int[values.Length];
+                                if (values.Length > 0)
+                                {
+                                    for (int i = 0; i < values.Length; i++)
+                                    {
+                                        if (Regex.IsMatch(values[i], @"^\d+$"))
+                                        {
+                                            int menuItemID = int.Parse(values[i]);
+
+                                            if (menuContainer.checkIfElementExist(menuItemID))
+                                            {
+                                                menuItems[i] = menuItemID;
+                                                breakPoint++;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Make sure that all menu items are existing");
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Menu items must be numbers. EXAMPLE 1 2 3");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("At least one menu item is a must");
+                                }
+                                if (breakPoint == values.Length) break;
+
+                            }
+                            Order order = new Order(0, DateTime.Now, menuItems);
+                            if(!stockContainer.deductStocks(order, menuContainer))
+                            {
+                                Console.WriteLine("Sorry, but we dont have enough products for the order");
+                            }
+                            else
+                            {
+                                orderContainer.addOrderElement(order);
+                                Console.WriteLine("New Order was added");
+                            }                        
                             break;
                         }
                 }
