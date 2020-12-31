@@ -23,6 +23,14 @@ namespace Restaurant_Manager.Containers
             fileHandler = new FileHandler();
         }
 
+        public void displayData()
+        {
+            for (int i = 0; i < index; i++)
+            {
+                Console.WriteLine(stocksArray[i].ToString());
+            }
+        }
+
         public void loadStockElement(Stock element)
         {
             stocksArray[index++] = element;
@@ -83,6 +91,18 @@ namespace Restaurant_Manager.Containers
                 }
             }
             return null;
+        }
+
+        public bool checkIfElementExist(int id)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                if (stocksArray[i].id == id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public int getLenght()

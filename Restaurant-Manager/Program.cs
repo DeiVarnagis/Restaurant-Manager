@@ -44,22 +44,13 @@ namespace Restaurant_Manager
                 switch (Console.ReadLine())
                 {
                     case "ds":
-                        for (int i = 0; i < stockContainer.getLenght(); i++)
-                        {
-                            Console.WriteLine(stockContainer.getArrayElement(i).ToString());
-                        }
+                        stockContainer.displayData();
                         break;
                     case "dm":
-                        for (int i = 0; i < menuContainer.getLenght(); i++)
-                        {
-                            Console.WriteLine(menuContainer.getArrayElement(i).ToString());
-                        }
+                        menuContainer.displayData();
                         break;
                     case "do":
-                        for (int i = 0; i < orderContainer.getLenght(); i++)
-                        {
-                            Console.WriteLine(orderContainer.getArrayElement(i).ToString());
-                        }
+                        orderContainer.displayData();
                         break;
                     case "as":
                         {
@@ -69,7 +60,7 @@ namespace Restaurant_Manager
                             Console.WriteLine("Write the Name of the Stock");
                             string name = Console.ReadLine();
                             Console.WriteLine("Write the Portion Count of the Stock");
-                            while(true)
+                            while (true)
                             {
                                 string line = Console.ReadLine();
                                 if (Regex.IsMatch(line, @"^\d+$"))
@@ -82,11 +73,11 @@ namespace Restaurant_Manager
                                     Console.WriteLine("Portion count must be a number");
                                 }
                             }
-                            while(true)
+                            while (true)
                             {
                                 Console.WriteLine("What kind of unit type? kg/lb");
                                 string line = Console.ReadLine();
-                                if(line == "kg" || line == "lb")
+                                if (line == "kg" || line == "lb")
                                 {
                                     unit = line;
                                     break;
@@ -118,10 +109,7 @@ namespace Restaurant_Manager
                         }
                     case "rs":
                         {
-                            for (int i = 0; i < stockContainer.getLenght(); i++)
-                            {
-                                Console.WriteLine(stockContainer.getArrayElement(i).ToString());
-                            }
+                            stockContainer.displayData();
                             Console.WriteLine();
                             Console.WriteLine("Please write the id of the row in order to delete it");
                             while (true)
@@ -148,13 +136,10 @@ namespace Restaurant_Manager
                                 }
                             }
                             break;
-                        }                    
+                        }
                     case "us":
                         {
-                            for (int i = 0; i < stockContainer.getLenght(); i++)
-                            {
-                                Console.WriteLine(stockContainer.getArrayElement(i).ToString());
-                            }
+                            stockContainer.displayData();
                             Console.WriteLine();
                             Console.WriteLine("Please write the id of the row in order to update it");
                             string id = Console.ReadLine();
@@ -189,7 +174,7 @@ namespace Restaurant_Manager
                                                 }
                                             case "count":
                                                 {
-                                                    Console.WriteLine("Write new Portion Count of the stock element");                                                
+                                                    Console.WriteLine("Write new Portion Count of the stock element");
                                                     while (true)
                                                     {
                                                         string line = Console.ReadLine();
@@ -207,8 +192,8 @@ namespace Restaurant_Manager
                                                 }
                                             case "unit":
                                                 {
-                                                    Console.WriteLine("Write new Unit of the stock element");                                                
-                                                    while(true)
+                                                    Console.WriteLine("Write new Unit of the stock element");
+                                                    while (true)
                                                     {
                                                         string value1 = Console.ReadLine();
                                                         if (value1 == "kg" || value1 == "lb")
@@ -221,14 +206,14 @@ namespace Restaurant_Manager
                                                             Console.WriteLine("Please Select between kg/lb");
                                                         }
                                                     }
-                                                  
+
                                                     break;
                                                 }
                                             case "size":
                                                 {
                                                     Console.WriteLine("Write new Portion Size of the stock element");
                                                     while (true)
-                                                    {                                                
+                                                    {
                                                         string value2 = Console.ReadLine();
                                                         if (Regex.IsMatch(value2, @"^\d*\.?\d*$"))
                                                         {
@@ -241,9 +226,9 @@ namespace Restaurant_Manager
                                                         }
                                                     }
                                                     break;
-                                                }                                                                                    
+                                                }
                                         }
-                                        if(value == "done")
+                                        if (value == "done")
                                         {
                                             Console.WriteLine("Stock element was updated");
                                             Stock stock = new Stock(selectedElement.id, name, portionCount, unit, portionSize);
@@ -262,8 +247,191 @@ namespace Restaurant_Manager
                                 Console.WriteLine("Ups, can't find the id. Try again");
                             }
                             break;
-                        }                      
-                }             
+                        }
+                    case "am":
+                        {
+                            int breakPoint = 0;
+                            int[] products;
+                            Console.WriteLine("Write the Name of the new Menu Item");
+                            string menuItemName = Console.ReadLine();
+                            stockContainer.displayData();
+                            Console.WriteLine();
+                            Console.WriteLine("Write the Products of the menu item. EXAMPLE 1 2 3");
+                            while (true)
+                            {
+                                breakPoint = 0;
+                                string line = Console.ReadLine();
+                                var values = line.Split(' ');
+                                products = new int[values.Length];
+                                if (values.Length > 0)
+                                {
+                                    for (int i = 0; i < values.Length; i++)
+                                    {
+                                        if (Regex.IsMatch(values[i], @"^\d+$"))
+                                        {
+                                            int productID = int.Parse(values[i]);
+                                          //  Console.WriteLine(!products.Contains(productID));
+                                            if (stockContainer.checkIfElementExist(productID) && !products.Contains(productID))
+                                            {
+                                                products[i] = productID;
+                                                breakPoint++;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Make sure that all products are existing. Products can not repeat");                                            
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Products must be numbers. EXAMPLE 1 2 3");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("At least one product is a must");
+                                }
+                                if (breakPoint == values.Length) break;
+
+                            }
+                            Menu menu = new Menu(0, menuItemName, products);
+                            menuContainer.addMenuElement(menu);
+                            Console.WriteLine("New menu item was added");
+                            break;
+                        }
+                    case "rm":
+                        {
+                            menuContainer.displayData();
+                            Console.WriteLine();
+                            Console.WriteLine("Please write the id of the row in order to delete it");
+                            while (true)
+                            {
+                                string line = Console.ReadLine();
+                                if (Regex.IsMatch(line, @"^\d+$"))
+                                {
+                                    if (menuContainer.deleteStockElement(int.Parse(line)))
+                                    {
+                                        Console.WriteLine("Row was deleted");
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Ups, can't find the id. Try again");
+                                    }
+
+                                }
+                                else
+                                {
+                                    Console.WriteLine("ID must be number");
+                                }
+                            }
+                            break;
+                        }
+                    case "um":
+                        {
+                            menuContainer.displayData();
+                            Console.WriteLine();
+                            Console.WriteLine("Please write the id of the row in order to update it");
+                            string id = Console.ReadLine();
+                            if (Regex.IsMatch(id, @"^\d+$"))
+                            {
+                                Menu selectedElement = menuContainer.getArrayElementByID(int.Parse(id));
+                                if (selectedElement != null)
+                                {
+                                    string name = selectedElement.name;
+                                    
+
+                                    Console.WriteLine(selectedElement.ToString());
+                                    Console.WriteLine();
+                                    while (true)
+                                    {
+                                        string productsList = selectedElement.arrayAsString();
+                                        Console.WriteLine("Choose an option from the following list:");
+                                        Console.WriteLine();
+                                        Console.WriteLine("\tname - Update name current-> " + name);
+                                        Console.WriteLine("\tproducts - Update product list - current -> (" + productsList + ')');                                    
+                                        Console.WriteLine("\tdone - to submit");
+                                        string value = Console.ReadLine();
+                                        switch (value)
+                                        {
+                                            case "name":
+                                                {
+                                                    Console.WriteLine("Write new name of the menu element");
+                                                    name = Console.ReadLine();
+                                                    break;
+                                                }
+                                            case "products":
+                                                {
+                                                    int breakPoint = 0;
+                                                    int[] products;
+                                                    Console.WriteLine();
+                                                    stockContainer.displayData();
+                                                    Console.WriteLine();
+                                                    Console.WriteLine("Write new values of menu products. EXAMPLE 1 2 3");
+                                                    while (true)
+                                                    {
+                                                        breakPoint = 0;
+                                                        string line = Console.ReadLine();
+                                                        var values = line.Split(' ');
+                                                        products = new int[values.Length];
+                                                        if (values.Length > 0)
+                                                        {
+                                                            for (int i = 0; i < values.Length; i++)
+                                                            {
+                                                                if (Regex.IsMatch(values[i], @"^\d+$"))
+                                                                {
+                                                                    int productID = int.Parse(values[i]);
+                                                                    //  Console.WriteLine(!products.Contains(productID));
+                                                                    if (stockContainer.checkIfElementExist(productID) && !products.Contains(productID))
+                                                                    {
+                                                                        products[i] = productID;
+                                                                        breakPoint++;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        Console.WriteLine("Make sure that all products are existing. Products can not repeat");
+                                                                        break;
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    Console.WriteLine("Products must be numbers. EXAMPLE 1 2 3");
+                                                                }
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            Console.WriteLine("At least one product is a must");
+                                                        }
+                                                        if (breakPoint == values.Length) break;
+
+                                                    }
+                                                    selectedElement.products = products;
+                                                    break;
+                                                }                                         
+                                        }
+                                        if (value == "done")
+                                        {
+                                           Console.WriteLine("Stock element was updated");
+                                            Menu menu = new Menu(selectedElement.id, name, selectedElement.products);
+                                            menuContainer.updateMenu(menu);
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ups, can't find the id. Try again");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ups, can't find the id. Try again");
+                            }
+                            break;
+                        }
+                }
             }        
         }
     }
