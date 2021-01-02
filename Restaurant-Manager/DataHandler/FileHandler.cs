@@ -86,7 +86,7 @@ namespace Restaurant_Manager.DataHandler
                         productsArray[i] = int.Parse(arrayElements[i]);
                     }
                     Menu menu = new Menu(int.Parse(values[0]), values[1] ,productsArray);
-                    container.loadStockElement(menu);
+                    container.loadMenuElement(menu);
                 }
             }
         }

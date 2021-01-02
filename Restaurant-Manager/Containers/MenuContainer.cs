@@ -4,7 +4,7 @@ using Restaurant_Manager.DataHandler;
 
 namespace Restaurant_Manager.Containers
 {
-    class MenuContainer
+   public class MenuContainer
     {
 
         private Menu[] menuArray;
@@ -27,7 +27,7 @@ namespace Restaurant_Manager.Containers
             }
         }
 
-        public void loadStockElement(Menu element)
+        public void loadMenuElement(Menu element)
         {
             menuArray[index++] = element;
             lastInserted = element.getID();
@@ -41,7 +41,7 @@ namespace Restaurant_Manager.Containers
             fileHandler.appendMenuData(element);
         }
 
-        public bool deleteStockElement(int id)
+        public bool deleteMenuElement(int id)
         {
             for (int i = 0; i < index; i++)
             {

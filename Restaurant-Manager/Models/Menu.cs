@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Restaurant_Manager.Models
 {
-    class Menu
+    public class Menu
     {
         private int id;
         private string name;

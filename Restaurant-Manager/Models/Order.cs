@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Manager.Models
 {
-    class Order
+    public class Order
     {
         private int id { get; set; }
 

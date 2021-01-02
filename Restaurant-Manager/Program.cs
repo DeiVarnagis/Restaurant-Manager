@@ -307,7 +307,7 @@ namespace Restaurant_Manager
                                 string line = Console.ReadLine();
                                 if (Regex.IsMatch(line, @"^\d+$"))
                                 {
-                                    if (menuContainer.deleteStockElement(int.Parse(line)))
+                                    if (menuContainer.deleteMenuElement(int.Parse(line)))
                                     {
                                         Console.WriteLine("Row was deleted");
                                         break;

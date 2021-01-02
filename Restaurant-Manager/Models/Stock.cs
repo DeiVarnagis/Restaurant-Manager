@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Restaurant_Manager.Models
 {
-    class Stock
+    public class Stock
     {
 
         private int id { get; set; }

@@ -6,12 +6,12 @@ using Restaurant_Manager.DataHandler;
 
 namespace Restaurant_Manager.Containers
 {
-    class StockContainer
+    public class StockContainer
     {
 
         private Stock[] stocksArray;
         private int index = 0;
-        private int lastInserted;
+        private int lastInserted=0;
         FileHandler fileHandler;
 
         public StockContainer(int size)
@@ -108,7 +108,7 @@ namespace Restaurant_Manager.Containers
             return index;
         }
 
-        public List<int> getAllStocksUsed(Order order, MenuContainer menuContainer)
+        private List<int> getAllStocksUsed(Order order, MenuContainer menuContainer)
         {
             List<int> usedProducts = new List<int>();
             int[] menuItems = order.getMenuItems();

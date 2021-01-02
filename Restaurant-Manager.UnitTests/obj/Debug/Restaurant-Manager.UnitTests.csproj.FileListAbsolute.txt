@@ -1,0 +1,17 @@
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\obj\Debug\Restaurant-Manager.UnitTests.csprojAssemblyReference.cache
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\obj\Debug\Restaurant-Manager.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Restaurant-Manager.UnitTests.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Restaurant-Manager.UnitTests.pdb
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Restaurant-Manager.exe
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Restaurant-Manager.pdb
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Restaurant-Manager.exe.config
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\obj\Debug\Restaurant-Manager.UnitTests.csproj.CopyComplete
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\obj\Debug\Restaurant-Manager.UnitTests.dll
+C:\Users\PC\Desktop\Restaurant- Manager\Restaurant-Manager\Restaurant-Manager.UnitTests\obj\Debug\Restaurant-Manager.UnitTests.pdb
