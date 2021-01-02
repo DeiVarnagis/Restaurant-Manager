@@ -20,6 +20,7 @@ namespace Restaurant_Manager.Containers
 
         public void displayData()
         {
+            Console.WriteLine(string.Format("|{0,5}|{1,25}|{2,10}|", "ID", "Name", "Products"));
             for (int i = 0; i < index; i++)
             {
                 Console.WriteLine(menuArray[i].ToString());
@@ -29,12 +30,12 @@ namespace Restaurant_Manager.Containers
         public void loadStockElement(Menu element)
         {
             menuArray[index++] = element;
-            lastInserted = element.id;
+            lastInserted = element.getID();
         }
 
         public void addMenuElement(Menu element)
         {
-            element.id = lastInserted + 1;
+            element.setID(lastInserted + 1);
             lastInserted++;
             menuArray[index++] = element;
             fileHandler.appendMenuData(element);
@@ -44,7 +45,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (menuArray[i].id == id)
+                if (menuArray[i].getID() == id)
                 {
                     for (int j = i; j < index - 1; j++)
                     {
@@ -63,7 +64,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (menuArray[i].id == id)
+                if (menuArray[i].getID() == id)
                 {
                     return true;
                 }
@@ -75,7 +76,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (menuArray[i].id == element.id)
+                if (menuArray[i].getID() == element.getID())
                 {
                     menuArray[i] = element;
                     fileHandler.rewriteDataMenu(this);
@@ -92,7 +93,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (menuArray[i].id == id)
+                if (menuArray[i].getID() == id)
                 {
                     return menuArray[i];
                 }

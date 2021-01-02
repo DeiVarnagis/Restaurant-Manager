@@ -146,10 +146,10 @@ namespace Restaurant_Manager
                                 Stock selectedElement = stockContainer.getArrayElementByID(int.Parse(id));
                                 if (selectedElement != null)
                                 {
-                                    int portionCount = selectedElement.portionCount;
-                                    string unit = selectedElement.unit;
-                                    double portionSize = selectedElement.portionSize;
-                                    string name = selectedElement.name;
+                                    int portionCount = selectedElement.getPortionCount();
+                                    string unit = selectedElement.getUnit();
+                                    double portionSize = selectedElement.getPortionSize();
+                                    string name = selectedElement.getName();
                                     Console.WriteLine(selectedElement.ToString());
                                     Console.WriteLine();
                                     while (true)
@@ -229,7 +229,7 @@ namespace Restaurant_Manager
                                         if (value == "done")
                                         {
                                             Console.WriteLine("Stock element was updated");
-                                            Stock stock = new Stock(selectedElement.id, name, portionCount, unit, portionSize);
+                                            Stock stock = new Stock(selectedElement.getID(), name, portionCount, unit, portionSize);
                                             stockContainer.updateStock(stock);
                                             break;
                                         }
@@ -268,7 +268,6 @@ namespace Restaurant_Manager
                                         if (Regex.IsMatch(values[i], @"^\d+$"))
                                         {
                                             int productID = int.Parse(values[i]);
-                                          //  Console.WriteLine(!products.Contains(productID));
                                             if (stockContainer.checkIfElementExist(productID) && !products.Contains(productID))
                                             {
                                                 products[i] = productID;
@@ -337,7 +336,7 @@ namespace Restaurant_Manager
                                 Menu selectedElement = menuContainer.getArrayElementByID(int.Parse(id));
                                 if (selectedElement != null)
                                 {
-                                    string name = selectedElement.name;
+                                    string name = selectedElement.getName();
                                     
 
                                     Console.WriteLine(selectedElement.ToString());
@@ -380,7 +379,6 @@ namespace Restaurant_Manager
                                                                 if (Regex.IsMatch(values[i], @"^\d+$"))
                                                                 {
                                                                     int productID = int.Parse(values[i]);
-                                                                    //  Console.WriteLine(!products.Contains(productID));
                                                                     if (stockContainer.checkIfElementExist(productID) && !products.Contains(productID))
                                                                     {
                                                                         products[i] = productID;
@@ -405,14 +403,14 @@ namespace Restaurant_Manager
                                                         if (breakPoint == values.Length) break;
 
                                                     }
-                                                    selectedElement.products = products;
+                                                    selectedElement.setProducts(products);
                                                     break;
                                                 }                                         
                                         }
                                         if (value == "done")
                                         {
                                            Console.WriteLine("Stock element was updated");
-                                            Menu menu = new Menu(selectedElement.id, name, selectedElement.products);
+                                            Menu menu = new Menu(selectedElement.getID(), name, selectedElement.getProducts());
                                             menuContainer.updateMenu(menu);
                                             break;
                                         }

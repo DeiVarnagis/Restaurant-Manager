@@ -22,6 +22,7 @@ namespace Restaurant_Manager.Containers
 
         public void displayData()
         {
+            Console.WriteLine(string.Format("|{0,5}|{1,15}|{2,15}|{3,5}|{4,15}|", "id", "Name", "Portion Count", "Unit", "Portion Size")); 
             for (int i = 0; i < index; i++)
             {
                 Console.WriteLine(stocksArray[i].ToString());
@@ -31,12 +32,12 @@ namespace Restaurant_Manager.Containers
         public void loadStockElement(Stock element)
         {
             stocksArray[index++] = element;
-            lastInserted = element.id;
+            lastInserted = element.getID();
         }
 
         public void addStockElement(Stock element)
         {
-            element.id = lastInserted +1;
+            element.setID(lastInserted + 1);
             lastInserted++;
             stocksArray[index++] = element;
             fileHandler.appendStockData(element);
@@ -46,7 +47,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if(stocksArray[i].id == id)
+                if(stocksArray[i].getID() == id)
                 {
                     for (int j = i; j < index - 1; j++)
                     {
@@ -65,7 +66,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (stocksArray[i].id == element.id)
+                if (stocksArray[i].getID() == element.getID())
                 {
                     stocksArray[i] = element;
                     fileHandler.rewriteData(this);
@@ -82,7 +83,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if(stocksArray[i].id == id)
+                if(stocksArray[i].getID() == id)
                 {
                     return stocksArray[i];
                 }
@@ -94,7 +95,7 @@ namespace Restaurant_Manager.Containers
         {
             for (int i = 0; i < index; i++)
             {
-                if (stocksArray[i].id == id)
+                if (stocksArray[i].getID() == id)
                 {
                     return true;
                 }
@@ -110,14 +111,16 @@ namespace Restaurant_Manager.Containers
         public List<int> getAllStocksUsed(Order order, MenuContainer menuContainer)
         {
             List<int> usedProducts = new List<int>();
-            for (int i = 0; i < order.menuItems.Length; i++)
+            int[] menuItems = order.getMenuItems();
+            for (int i = 0; i < menuItems.Length; i++)
             {
-                Menu menuItem = menuContainer.getArrayElementByID(order.menuItems[i]);
+                Menu menuItem = menuContainer.getArrayElementByID(menuItems[i]);
+                int[] products = menuItem.getProducts();
                 if (menuItem != null)
                 {
-                    for (int j = 0; j < menuItem.products.Length; j++)
+                    for (int j = 0; j < products.Length; j++)
                     {
-                        usedProducts.Add(menuItem.products[j]);
+                        usedProducts.Add(products[j]);
                     }              
                 }
             }
@@ -132,10 +135,10 @@ namespace Restaurant_Manager.Containers
             {
                 for (int i = 0; i < index; i++)
                 {
-                    if(stocksArray[i].id == stock)
+                    if(stocksArray[i].getID() == stock)
                     {
-                        stocksArray[i].portionCount = stocksArray[i].portionCount-1;
-                        if (stocksArray[i].portionCount < 1)
+                        stocksArray[i].setPortionCount(stocksArray[i].getPortionCount() - 1);
+                        if (stocksArray[i].getPortionCount() < 1)
                         {
                             return false;
                         }

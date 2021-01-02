@@ -41,10 +41,10 @@ namespace Restaurant_Manager.DataHandler
             File.AppendAllText(MENU, menu.ToStringFile() + Environment.NewLine);
         }
 
-         public void appendOrderData(Order order)
-         {
-             File.AppendAllText(ORDERS, order.ToStringFile() + Environment.NewLine);
-         }
+        public void appendOrderData(Order order)
+        {
+            File.AppendAllText(ORDERS, order.ToStringFile() + Environment.NewLine);
+        }
 
         public void rewriteData(StockContainer stockContainer)
         {

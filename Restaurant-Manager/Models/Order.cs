@@ -8,15 +8,45 @@ namespace Restaurant_Manager.Models
 {
     class Order
     {
-        public int id { get; set; }
+        private int id { get; set; }
 
-        public DateTime date { get; set; }
-        public int[] menuItems { get; set; }
+        private DateTime date { get; set; }
+        private int[] menuItems { get; set; }
 
         public Order(int id, DateTime date, int[] menuItems)
         {
             this.id = id;
             this.date = date;
+            this.menuItems = menuItems;
+        }
+
+        public int getID()
+        {
+            return id;
+        }
+
+        public DateTime getDate()
+        {
+            return date;
+        }
+
+        public int[] getMenuItems()
+        {
+            return menuItems;
+        }
+
+        public void setID(int id)
+        {
+            this.id = id;
+        }
+
+        public void setDate(DateTime date)
+        {
+            this.date = date;
+        }
+
+        public void setMenuItems(int[] menuItems)
+        {
             this.menuItems = menuItems;
         }
 
@@ -27,7 +57,7 @@ namespace Restaurant_Manager.Models
 
         public override string ToString()
         {
-            return id + " " + date + " " + arrayAsString();
+            return string.Format("|{0,5}|{1,25}|{2,15}|", id, date, arrayAsString());
 
         }
 
